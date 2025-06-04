@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: django-dictionary-app
+    env: python
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn dictionary_project.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: dictionary_project.settings
+      - key: PYTHON_VERSION
+        value: 3.11.8
+      - fromDotEnv: true

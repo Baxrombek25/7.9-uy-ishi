@@ -1,0 +1,2 @@
+web: gunicorn dictationary_project.wsgi
+--log-file -
