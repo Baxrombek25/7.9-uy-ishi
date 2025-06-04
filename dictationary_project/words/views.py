@@ -8,7 +8,7 @@ import os
 def word_list(request):
     query = request.GET.get('search')
     category = request.GET.get('category')
-    sort = request.GET.get('sort', 'word')  # default sort by word
+    sort = request.GET.get('sort', 'word')
     page_number = request.GET.get('page', 1)
 
     words = Word.objects.all()
@@ -16,7 +16,6 @@ def word_list(request):
     if query:
         words = words.filter(word__icontains=query)
         if not words.exists():
-            # Write to weekly .txt file if not found
             week = datetime.now().strftime("%Y-%U")
             file_path = f'missed_words_{week}.txt'
             with open(file_path, 'a', encoding='utf-8') as f:
